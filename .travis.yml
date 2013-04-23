@@ -12,5 +12,7 @@ notifications:
   email:
     recipients:
       - yoan.roullard@gmail.com
+      - q.hiss@hotmail.fr
+      - clemgrim@gmail.com
     on_success: change
     on_failure: always
