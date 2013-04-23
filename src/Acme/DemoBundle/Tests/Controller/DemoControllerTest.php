@@ -14,4 +14,10 @@ class DemoControllerTest extends WebTestCase
 
         $this->assertGreaterThan(0, $crawler->filter('html:contains("Hello Fabien")')->count());
     }
+    public function testFalse()
+    {
+        // make the test fail to test travis email notifications
+        $this->assertTrue(false);
+        
+    }
 }
