@@ -60,6 +60,9 @@ class StockProduct
     public function setProduct($product){
         $this->product = $product;
     }
+    public function getProduct(){
+        return $this->product;
+    }
     public function setStore($store){
         $this->store = $store;
     }

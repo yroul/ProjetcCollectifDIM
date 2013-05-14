@@ -30,7 +30,7 @@ class Store
     
     /**
      *
-     * @ORM\ManyToMany(targetEntity="Acme\DemoBundle\Entity\StockProduct",cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Acme\DemoBundle\Entity\StockProduct",cascade={"persist","remove"})
      * @ORM\JoinTable(name="StoreStock",joinColumns={@ORM\JoinColumn(name="store_id",referencedColumnName="id")})
      */
     private $stocks;
