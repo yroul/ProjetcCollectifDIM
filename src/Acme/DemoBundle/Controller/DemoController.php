@@ -29,7 +29,7 @@ class DemoController extends Controller
      * @Template()
      */
     public function testEntitiesAction(){
-        $product = new Product();
+    /*    $product = new Product();
         $product->setName("SODOMIE");
         
         $store = new Store();
@@ -45,10 +45,19 @@ class DemoController extends Controller
         
         
         
-        $em->flush();
+        $em->flush();*/
         
+      /*   
+        $store = $this->getDoctrine()->getRepository("AcmeDemoBundle:Store")
+                ->findOneBy(array("name"=>"MAXIME"));
         
+       $stocks = $store->getStocks();
+       $stock = $stocks[0];
+       $em = $this->getDoctrine()->getManager();
+       $em->remove($store);
+       $em->flush();
         
+        */
       
         return array("name"=>"dfg");
     }
