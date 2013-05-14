@@ -10,6 +10,9 @@ use Acme\DemoBundle\Form\ContactType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
+use Acme\DemoBundle\Entity\Product as Product;
+use Acme\DemoBundle\Entity\StockProduct as StockProduct;
+use Acme\DemoBundle\Entity\Store as Store;
 class DemoController extends Controller
 {
     /**
@@ -21,6 +24,34 @@ class DemoController extends Controller
         return array();
     }
 
+    /**
+     * @Route("/test",name="test")
+     * @Template()
+     */
+    public function testEntitiesAction(){
+        $product = new Product();
+        $product->setName("SODOMIE");
+        
+        $store = new Store();
+        $store->setName("MAXIME");
+        
+        $stockProductStockPerso = new StockProduct();
+        $stockProductStockPerso->setProduct($product);
+        $stockProductStockPerso->setStore($store);
+        $stockProductStockPerso->setAmount(4515);
+        $store->addStocks($stockProductStockPerso);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($store);
+        
+        
+        
+        $em->flush();
+        
+        
+        
+      
+        return array("name"=>"dfg");
+    }
     /**
      * @Route("/hello/{name}", name="_demo_hello")
      * @Template()
