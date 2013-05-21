@@ -1,3 +1,8 @@
+hgr_rest:
+    resource: "@HGRRestBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 hgr_user:
     resource: "@HGRUserBundle/Controller/"
     type:     annotation

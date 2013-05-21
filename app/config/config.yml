@@ -29,16 +29,7 @@ fos_user:
     
 
 fos_rest:
- view:
-     formats:
-         rss: true
-         xml: false
-     templating_formats:
-         html: true
-     force_redirects:
-         html: true
-     failed_validation: HTTP_BAD_REQUEST
-     default_engine: twig
+    param_fetcher_listener: true
        
 # Twig Configuration
 twig:
