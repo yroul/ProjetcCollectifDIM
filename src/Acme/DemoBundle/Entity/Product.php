@@ -25,6 +25,10 @@ class Product
     {
         $this->marks = new ArrayCollection();
     }
+    /**
+     * @ORM\ManyToOne(targetEntity="Acme\DemoBundle\Entity\Category", inversedBy="products")
+     */
+    protected $category;
 
     /**
      * @var string
