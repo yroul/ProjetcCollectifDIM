@@ -19,7 +19,14 @@ framework:
     trusted_proxies: ~
     session:         ~
     fragments:       ~
+    translator:      { fallback: %locale% }
 
+# FosUser Configuration
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: Acme\UserBundle\Entity\User
+    
 # Twig Configuration
 twig:
     debug:            %kernel.debug%
