@@ -1,0 +1,5 @@
+hgr_entity:
+    resource: "@HGREntityBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
