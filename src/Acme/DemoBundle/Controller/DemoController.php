@@ -13,6 +13,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Acme\DemoBundle\Entity\Product as Product;
 use Acme\DemoBundle\Entity\StockProduct as StockProduct;
 use Acme\DemoBundle\Entity\Store as Store;
+use Acme\DemoBundle\Entity\Mark as Mark;
 class DemoController extends Controller
 {
     /**
@@ -58,6 +59,24 @@ class DemoController extends Controller
        $em->flush();
         
         */
+        $product = new Product();
+        $product->setName("Dwillwork");
+        $mark = new Mark();
+        $mark->setValue("10");
+        $mark2 = new Mark();
+        $mark2->setValue("11");
+        $product->addMarks($mark);
+        $product->addMarks($mark2);
+        $em = $this->getDoctrine()->getManager();
+        
+       /*$product = $this->getDoctrine()->getRepository("AcmeDemoBundle:Product")
+               ->findOneBy(array("id"=>1));
+       $product->addMarks($mark);
+       $product->addMarks($mark2);
+       
+       $em = $this->getDoctrine()->getManager();*/
+        $em->persist($product);
+        $em->flush();
       
         return array("name"=>"dfg");
     }

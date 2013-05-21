@@ -3,7 +3,7 @@
 namespace Acme\DemoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Product
  *
@@ -20,6 +20,11 @@ class Product
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+     public function __construct()
+    {
+        $this->marks = new ArrayCollection();
+    }
 
     /**
      * @var string
@@ -28,12 +33,18 @@ class Product
      */
     private $name;
     /**
-     * @ORM\OneToMany(targetEntity="Acme\DemoBundle\Entity\Mark",cascade={"persist"})
-     * @ORM\JoinColumn(name="mark_id",referencedColumnName="id")
+     * @ORM\OneToMany(targetEntity="Acme\DemoBundle\Entity\Mark",mappedBy="product",cascade={"all"}))
      * @var type Mark
      */
-    private $mark;
+    private $marks;
 
+    public function addMarks($mark){
+        $mark->setProduct($this);
+        $this->marks[]= $mark;
+    }
+    public function getMarks(){
+        return $this->marks;
+    }
     /**
      * Get id
      *

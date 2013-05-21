@@ -28,6 +28,18 @@ class Mark
      */
     private $value;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Acme\DemoBundle\Entity\Product",inversedBy="marks")    
+     * @var type Product
+     */
+    private $product;
+    
+    public function setProduct($product){
+        $this->product = $product;
+    }
+    public function getProduct(){
+        return $this->product;
+    }
 
     /**
      * Get id
