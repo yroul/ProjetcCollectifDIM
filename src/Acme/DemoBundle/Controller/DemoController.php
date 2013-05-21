@@ -14,6 +14,9 @@ use Acme\DemoBundle\Entity\Product as Product;
 use Acme\DemoBundle\Entity\StockProduct as StockProduct;
 use Acme\DemoBundle\Entity\Store as Store;
 use Acme\DemoBundle\Entity\Mark as Mark;
+use Acme\DemoBundle\Entity\Comment as Comment;
+use \DateTime as DateTime;
+
 class DemoController extends Controller
 {
     /**
@@ -65,16 +68,13 @@ class DemoController extends Controller
         $mark->setValue("10");
         $mark2 = new Mark();
         $mark2->setValue("11");
-        $product->addMarks($mark);
-        $product->addMarks($mark2);
-        $em = $this->getDoctrine()->getManager();
-        
-       /*$product = $this->getDoctrine()->getRepository("AcmeDemoBundle:Product")
-               ->findOneBy(array("id"=>1));
-       $product->addMarks($mark);
-       $product->addMarks($mark2);
-       
-       $em = $this->getDoctrine()->getManager();*/
+        $product->addMark($mark);
+        $product->addMark($mark2);
+       $comment = new Comment();
+       $comment->setText("blabla");
+       $comment->setDate(new DateTime());
+       $product->addComment($comment);
+       $em = $this->getDoctrine()->getManager();
         $em->persist($product);
         $em->flush();
       

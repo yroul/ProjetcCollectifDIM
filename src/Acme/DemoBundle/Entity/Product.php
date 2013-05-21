@@ -38,12 +38,24 @@ class Product
      */
     private $marks;
 
-    public function addMarks($mark){
+    public function addMark($mark){
         $mark->setProduct($this);
         $this->marks[]= $mark;
     }
     public function getMarks(){
         return $this->marks;
+    }
+    /**
+     * @ORM\OneToMany(targetEntity="Acme\DemoBundle\Entity\Comment",mappedBy="product",cascade={"all"}))
+     * @var type Comment
+     */
+    private $comments;
+    public function addComment($comment){
+        $comment->setProduct($this);
+        $this->comments[] = $comment;
+    }
+    public function getComment(){
+        return $this->getComment();
     }
     /**
      * Get id
