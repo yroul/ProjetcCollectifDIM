@@ -1,11 +1,21 @@
+hgr_core:
+    resource: "@HGRCoreBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+hgr_backend:
+    resource: "@HGRBackendBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 hgr_entity:
     resource: "@HGREntityBundle/Controller/"
     type:     annotation
     prefix:   /
-hgr_user:
-    resource: "@HGRUserBundle/Controller/"
-    type:     annotation
-    prefix:   /user
+#hgr_user:
+ #   resource: "@HGRUserBundle/Controller/"
+ #   type:     annotation
+ #   prefix:   /admin
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
