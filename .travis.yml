@@ -7,7 +7,7 @@ before_script:
   - cp app/config/travis-parameters.yml app/config/parameters.yml
   - php composer.phar self-update
   - composer install
-  - php app/console:schema:create
+  - php app/console doctrine:schema:create
 
 script: phpunit -c app --coverage-text
 notifications:
