@@ -1,12 +1,12 @@
 hgr_core:
     resource: "@HGRCoreBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /core
 
 hgr_backend:
     resource: "@HGRBackendBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /admin
 
 hgr_entity:
     resource: "@HGREntityBundle/Controller/"
