@@ -5,6 +5,7 @@ php:
 
 before_script:
   - cp app/config/travis-parameters.yml app/config/parameters.yml
+  - mysql -e 'create database myapp_test;'
   - php composer.phar self-update
   - composer install
   - php app/console doctrine:schema:create
