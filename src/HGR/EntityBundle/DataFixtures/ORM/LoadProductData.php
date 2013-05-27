@@ -10,7 +10,7 @@ use HGR\EntityBundle\Entity\Store;
 use HGR\EntityBundle\Entity\StockProduct;
 use HGR\EntityBundle\Entity\Mark;
 use HGR\EntityBundle\Entity\Comment;
-class LoadUserData implements FixtureInterface
+class LoadProductData implements FixtureInterface
 {
     /**
      * Load product fixtures
@@ -23,11 +23,17 @@ class LoadUserData implements FixtureInterface
         //create somme product and add category to each
         $product1 = new Product("Test_produit1", 15.5);
         $product1->setCategory($category);
+        $product1->setBrand("marque1");
+        $product1->setTags(array("tag","tag2"));
         $product2 = new Product("Test_produit2", 8.99);
         $product2->setCategory($category);
+        $product2->setBrand("marque1");
+        $product2->setTags(array("tag","tag2"));
         $product3 = new Product("Test_produit3", 0.5);
         $product3->addMark(new Mark(4.5));
         $product3->setCategory($category);
+        $product3->setBrand("marque1");
+        $product3->setTags(array("tag","tag2"));
         //persist product (and category)
         $manager->persist($product1);
         $manager->persist($product2);
