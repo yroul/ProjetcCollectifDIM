@@ -4,6 +4,7 @@ namespace HGR\EntityBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 /**
  * Product
  *
@@ -20,17 +21,38 @@ class Product
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
-     public function __construct()
+    public function __construct($name,$price)
     {
+        $this->name = $name;
+        $this->price = $price;
         $this->marks = new ArrayCollection();
     }
     /**
-     * @ORM\ManyToOne(targetEntity="HGR\EntityBundle\Entity\Category", inversedBy="products")
+     * @ORM\ManyToOne(targetEntity="HGR\EntityBundle\Entity\Category", inversedBy="products",cascade={"all"})
      */
     protected $category;
-
+    
     /**
+     * @var Float
+     *
+     * @ORM\Column(name="price", type="float")
+     */
+    private $price;
+    public function getPrice() {
+        return $this->price;
+    }
+
+    public function setPrice($price) {
+        if(price < 0){
+            throw new InvalidArgumentException("Price cannot be < 0");
+        }
+        else{
+            
+        $this->price = $price;
+        }
+    }
+
+        /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
@@ -93,4 +115,13 @@ class Product
     {
         return $this->name;
     }
+    public function getCategory() {
+        return $this->category;
+    }
+
+    public function setCategory($category) {
+        $this->category = $category;
+    }
+
+
 }

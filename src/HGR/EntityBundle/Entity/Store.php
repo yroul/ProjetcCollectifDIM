@@ -1,7 +1,7 @@
 <?php
 
 namespace HGR\EntityBundle\Entity;
-
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,6 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Store
 {
+    
+    
+    public function __construct($name) {
+        $this->name = $name;
+        $this->stocks =  new ArrayCollection();
+    }
     /**
      * @var integer
      *
@@ -34,6 +40,32 @@ class Store
      * @ORM\JoinTable(name="StoreStock",joinColumns={@ORM\JoinColumn(name="store_id",referencedColumnName="id")})
      */
     private $stocks;
+    
+    /**
+     * @ORM\Column(name="addresseLine1",nullable=true, type="string", length=255)
+     * @var String 
+     */
+    private $addresseLine1;
+     /**
+     * @ORM\Column(name="addresseLine2",nullable=true, type="string", length=255)
+     * @var String 
+     */
+    private $addresseLine2;
+     /**
+     * @ORM\Column(name="postalCode",nullable=true, type="string", length=15)
+     * @var String 
+     */
+    private $postalCode;
+     /**
+     * @ORM\Column(name="city",nullable=true, type="string", length=100)
+     * @var String 
+     */
+    private $city;
+     /**
+     * @ORM\Column(name="country",nullable=true, type="string", length=100)
+     * @var String 
+     */
+    private $country;
     
     public function addStocks($stock){
         $this->stocks[]= $stock;

@@ -1,7 +1,7 @@
 <?php
 
 namespace HGR\EntityBundle\Entity;
-
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,6 +21,10 @@ class Category
      */
     private $id;
 
+    public function __construct($name) {
+        $this->name = $name;
+        $this->products = new ArrayCollection();
+    }
     /**
      * @var string
      *
@@ -37,7 +41,7 @@ class Category
     /**
      * @var string
      *
-     * @ORM\Column(name="imageURL", type="string", length=255)
+     * @ORM\Column(name="imageURL", nullable=true,type="string", length=255)
      */
     private $imageURL;
 
@@ -87,7 +91,7 @@ class Category
     {
         $this->imageURL = $imageURL;
     
-        return $this;
+        
     }
 
     /**

@@ -3,7 +3,7 @@
 namespace HGR\EntityBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 /**
  * Mark
  *
@@ -12,6 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Mark
 {
+    public function __construct($value) {
+        $this->setValue($value);
+    }
     /**
      * @var integer
      *
@@ -59,9 +62,21 @@ class Mark
      */
     public function setValue($value)
     {
-        $this->value = $value;
-    
-        return $this;
+        $step = 25;
+        if($value >= 0 && $value <=5){
+            
+            $res = ($value*100) % $step;
+            if( $res == 0){
+               $this->value = $value; 
+            }
+            else{
+                throw new InvalidArgumentException("Mark value must be a multiple of 0.25");
+            }
+            
+        }
+        else{
+            throw new InvalidArgumentException("Mark value must be 0<= x <= 5");
+        }
     }
 
     /**
