@@ -53,5 +53,9 @@ class DefaultControllerTest extends WebTestCase
     public function testMarValueBadStep(){
         $mark = new Mark(2.9);
     }
+    public function testMarValueOk(){
+        $mark = new Mark(2.5);
+        $this->assertEquals($mark->getValue(),2.5);
+    }
     
 }
