@@ -103,4 +103,7 @@ class Category
     {
         return $this->imageURL;
     }
+    public function __toString() {
+        return $this->getName();
+    }
 }
