@@ -42,7 +42,7 @@ class Product
      */
     protected $origin;
     /**
-     * @ORM\Column(name="brand", type="string", length=255)
+     * @ORM\Column(name="brand", nullable=true, type="string", length=255)
      * @Assert\NotBlank()
      * @var type 
      */
