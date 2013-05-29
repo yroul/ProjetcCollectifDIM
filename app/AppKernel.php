@@ -25,6 +25,7 @@ class AppKernel extends Kernel
             new HGR\UserBundle\HGRUserBundle(),
             new HGR\BackendBundle\HGRBackendBundle(),
             new HGR\CoreBundle\HGRCoreBundle(),
+            new HGR\RestBundle\HGRRestBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
