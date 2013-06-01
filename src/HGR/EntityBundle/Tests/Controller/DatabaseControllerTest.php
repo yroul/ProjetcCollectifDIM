@@ -37,6 +37,7 @@ class DatabaseControllerTest extends WebTestCase
         $product = new Product();
         $product->setName("test_monProduit");
         $product->setPrice(15);
+      //  $product->setTags("tag1,tag2");
         $em = $this->em;
         $em->persist($product);
         $em->flush();

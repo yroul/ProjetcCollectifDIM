@@ -22,12 +22,11 @@ class Product
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    public function __construct($name,$price)
+    public function __construct()
     {
-        $this->name = $name;
-        $this->setPrice($price);
+        
         $this->marks = new ArrayCollection();
-        $this->tags = array();
+       
         
     }
     /**
@@ -49,7 +48,7 @@ class Product
     protected $brand;
     
     /**
-     *@ORM\Column(name="tags", type="array")
+     *@ORM\Column(name="tags",nullable=true, type="string", length=255)
      * @var type 
      */
     protected $tags;
@@ -207,7 +206,7 @@ class Product
     /**
      * Set tags
      *
-     * @param array $tags
+     * @param string $tags
      * @return Product
      */
     public function setTags($tags)
@@ -220,15 +219,12 @@ class Product
     /**
      * Get tags
      *
-     * @return array 
+     * @return string 
      */
     public function getTags()
     {
-        $string = "";
-        foreach($this->tags as $tag){
-          $string = $string.$tag; 
-        }
-        return $string;
+        
+        return $this->tags;
     }
 
     /**

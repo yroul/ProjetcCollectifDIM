@@ -21,8 +21,8 @@ class Category
      */
     private $id;
 
-    public function __construct($name) {
-        $this->name = $name;
+    public function __construct() {
+        
         $this->products = new ArrayCollection();
     }
     /**

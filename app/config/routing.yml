@@ -3,15 +3,15 @@ hgr_core:
     type:     annotation
     prefix:   /core
 
-hgr_backend:
-    resource: "@HGRBackendBundle/Controller/"
-    type:     annotation
-    prefix:   /admin
+#hgr_backend:
+ #   resource: "@HGRBackendBundle/Controller/"
+ #   type:     annotation
+ #   prefix:   /backend
 
 hgr_entity:
     resource: "@HGREntityBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /admin
 #hgr_user:
  #   resource: "@HGRUserBundle/Controller/"
  #   type:     annotation
