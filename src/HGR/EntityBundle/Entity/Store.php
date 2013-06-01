@@ -14,8 +14,7 @@ class Store
 {
     
     
-    public function __construct($name) {
-        $this->name = $name;
+    public function __construct() {
         $this->stocks =  new ArrayCollection();
     }
     /**
@@ -42,15 +41,15 @@ class Store
     private $stocks;
     
     /**
-     * @ORM\Column(name="addresseLine1",nullable=true, type="string", length=255)
+     * @ORM\Column(name="addressLine1",nullable=true, type="string", length=255)
      * @var String 
      */
-    private $addresseLine1;
+    private $addressLine1;
      /**
-     * @ORM\Column(name="addresseLine2",nullable=true, type="string", length=255)
+     * @ORM\Column(name="addressLine2",nullable=true, type="string", length=255)
      * @var String 
      */
-    private $addresseLine2;
+    private $addressLine2;
      /**
      * @ORM\Column(name="postalCode",nullable=true, type="string", length=15)
      * @var String 
@@ -108,4 +107,48 @@ class Store
     {
         return $this->name;
     }
+    public function getAddressLine1() {
+        return $this->addressLine1;
+    }
+
+    public function setAddressLine1($addressLine1) {
+        $this->addressLine1 = $addressLine1;
+    }
+
+    public function getAddressLine2() {
+        return $this->addressLine2;
+    }
+
+    public function setAddressLine2($addressLine2) {
+        $this->addressLine2 = $addressLine2;
+    }
+
+    public function getPostalCode() {
+        return $this->postalCode;
+    }
+
+    public function setPostalCode($postalCode) {
+        $this->postalCode = $postalCode;
+    }
+
+    public function getCity() {
+        return $this->city;
+    }
+
+    public function setCity($city) {
+        $this->city = $city;
+    }
+
+    public function getCountry() {
+        return $this->country;
+    }
+
+    public function setCountry($country) {
+        $this->country = $country;
+    }
+    public function __toString() {
+        return $this->getName();
+    }
+
+
 }
