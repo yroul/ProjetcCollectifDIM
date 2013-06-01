@@ -34,7 +34,9 @@ class DatabaseControllerTest extends WebTestCase
     
     public function testProductCreateReadSimpleProduct(){
         
-        $product = new Product("test_monProduit",0);
+        $product = new Product();
+        $product->setName("test_monProduit");
+        $product->setPrice(15);
         $em = $this->em;
         $em->persist($product);
         $em->flush();
