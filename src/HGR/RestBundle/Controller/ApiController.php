@@ -3,8 +3,8 @@
 namespace HGR\RestBundle\Controller;
  
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-
-
+use HGR\EntityBundle\Entity\Product;
+use HGR\EntityBundle\Entity\Mark;
 class ApiController extends RestController {
 
     public $data = "";
@@ -17,10 +17,12 @@ class ApiController extends RestController {
     /**
      * @Route("/rest")
      */
-    public function testAction(){            
+    public function testAction(){ 
+        $product = new Product("Biere1", 15);
+        $product->addMark(new Mark(5));
         $result = array();
         $result["result"] = true;
-        $result["content"] = "contenu blabla";
+        $result["content"] = $product;
        if(is_array($result)){
            $this->response($this->json($result), 200);
        }else{
