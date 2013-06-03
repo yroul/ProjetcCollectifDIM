@@ -3,21 +3,9 @@
 {% block body -%}
     <h1>StockProduct edit</h1>
 
-    <form action="{{ path('stockproduct_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    <form  action="{{ path('stockproduct_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
         <input type="hidden" name="_method" value="PUT" />
-       
-        <div>
-            <label>Quantité</label>
-            {{ form_widget(edit_form.amount)}}
-        </div>
-        <div>
-            {{ form_label(edit_form.product)}}
-            {{ form_widget(edit_form.product,{'attr':{'disabled':'disabled'}})}}
-        </div>
-        <div>
-            {{ form_label(edit_form.store)}}
-            {{ form_widget(edit_form.store,{'attr':{'disabled':'disabled'}})}}
-        </div>
+       {{ form_widget(edit_form) }}
             
         
         <p>

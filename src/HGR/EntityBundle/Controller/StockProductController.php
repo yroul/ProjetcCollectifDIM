@@ -9,7 +9,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use HGR\EntityBundle\Entity\StockProduct;
 use HGR\EntityBundle\Form\StockProductType;
-
+use HGR\EntityBundle\Form\StockProductEditType;
+use \InvalidArgumentException;
 /**
  * StockProduct controller.
  *
@@ -49,12 +50,18 @@ class StockProductController extends Controller
         $form->bind($request);
 
         if ($form->isValid()) {
+            try{
+                $this->checkExistingStock($stockProduct->getProduct(), $stockProduct->getStore());
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($stockProduct);
+                $em->flush();
+                return $this->redirect($this->generateUrl('stockproduct_show', array('id' => $stockProduct->getId())));
+            }catch(InvalidArgumentException $e){
+                $this->get('session')->setFlash('error',$e->getMessage());
+                return $this->redirect($this->generateUrl('stockproduct_new'));
+            }
             
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($stockProduct);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('stockproduct_show', array('id' => $stockProduct->getId())));
+            
         }
 
         return array(
@@ -123,7 +130,7 @@ class StockProductController extends Controller
             throw $this->createNotFoundException('Unable to find StockProduct entity.');
         }
 
-        $editForm = $this->createForm(new StockProductType(), $entity);
+        $editForm = $this->createForm(new StockProductEditType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -151,7 +158,7 @@ class StockProductController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new StockProductType(), $entity);
+        $editForm = $this->createForm(new StockProductEditType(), $entity);
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
@@ -207,5 +214,30 @@ class StockProductController extends Controller
             ->add('id', 'hidden')
             ->getForm()
         ;
+    }
+    /**
+     * Check if a stock already exist between ths product and this store
+     * @param type $product
+     * @param type $store
+     */
+    private function checkExistingStock($product,$store){
+       //TODO
+        $storeRepo = $this->getDoctrine()->getManager()->getRepository("HGREntityBundle:Store");
+        $store = $storeRepo->findOneBy(array('name'=>$store->getName()));
+        //a store with this name already exist
+        if($store != null){
+            $stocks = $store->getStocks();
+            foreach ($stocks as $stock) {
+               $existingProductInStore = $stock->getProduct();
+               //if the new product in store already exist
+               if($existingProductInStore === $product){
+                   throw new InvalidArgumentException("A stock already exist for the product '".$product->getName()."' in store '".$store->getName()."'.");
+                   break;
+               }
+            }
+        }
+               
+        
+        
     }
 }

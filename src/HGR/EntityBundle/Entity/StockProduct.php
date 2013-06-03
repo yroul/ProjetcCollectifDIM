@@ -23,7 +23,12 @@ class StockProduct
     private $id;
     /**
      * @var integer
-     * @Assert\Min(limit = "0", message = "La quantité doit être supérieur ou égale à 0")
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 99999,
+     *      minMessage = "La quantité doit être supérieur ou égale à 0",
+     *      maxMessage = "La quantité doit être inférieur à 99999"
+     * )
      * @ORM\Column(name="amount", type="integer")
      */
     private $amount;
