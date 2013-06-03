@@ -17,10 +17,10 @@ hgr_entity:
     resource: "@HGREntityBundle/Controller/"
     type:     annotation
     prefix:   /admin
-#hgr_user:
- #   resource: "@HGRUserBundle/Controller/"
- #   type:     annotation
- #   prefix:   /admin
+hgr_user:
+    resource: "@HGRUserBundle/Controller/"
+    type:     annotation
+    prefix:   /admin
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
