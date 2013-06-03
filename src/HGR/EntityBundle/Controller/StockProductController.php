@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use HGR\EntityBundle\Entity\StockProduct;
 use HGR\EntityBundle\Form\StockProductType;
 use HGR\EntityBundle\Form\StockProductEditType;
+use \InvalidArgumentException;
 /**
  * StockProduct controller.
  *
@@ -49,12 +50,18 @@ class StockProductController extends Controller
         $form->bind($request);
 
         if ($form->isValid()) {
-            $this->checkExistingStock($stockProduct->getProduct(), $stockProduct->getStore());
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($stockProduct);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('stockproduct_show', array('id' => $stockProduct->getId())));
+            try{
+                $this->checkExistingStock($stockProduct->getProduct(), $stockProduct->getStore());
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($stockProduct);
+                $em->flush();
+                return $this->redirect($this->generateUrl('stockproduct_show', array('id' => $stockProduct->getId())));
+            }catch(InvalidArgumentException $e){
+                $this->get('session')->setFlash('error',$e->getMessage());
+                return $this->redirect($this->generateUrl('stockproduct_new'));
+            }
+            
+            
         }
 
         return array(
@@ -222,7 +229,11 @@ class StockProductController extends Controller
             $stocks = $store->getStocks();
             foreach ($stocks as $stock) {
                $existingProductInStore = $stock->getProduct();
-               if($existingProductInStore === $pro){}
+               //if the new product in store already exist
+               if($existingProductInStore === $product){
+                   throw new InvalidArgumentException("A stock already exist for the product '".$product->getName()."' in store '".$store->getName()."'.");
+                   break;
+               }
             }
         }
                

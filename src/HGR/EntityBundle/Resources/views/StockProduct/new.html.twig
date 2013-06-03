@@ -2,7 +2,12 @@
 
 {% block body -%}
     <h1>StockProduct creation</h1>
-
+    
+    {% if app.session.hasFlash('error') %}
+    <div class="flash-error">
+        {{ app.session.flash('error') }}
+    </div>
+{% endif %}
     <form action="{{ path('stockproduct_create') }}" method="post" {{ form_enctype(form) }}>
         {{ form_widget(form) }}
         <p>
