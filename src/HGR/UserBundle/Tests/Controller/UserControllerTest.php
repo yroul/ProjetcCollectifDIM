@@ -52,4 +52,7 @@ class UserControllerTest extends WebTestCase
     }
 
     */
+    public function testFake(){
+        $this->assertTrue(true);
+    }
 }
