@@ -1,6 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
+     {% include "HGREntityBundle:Store:menu-top.html.twig" %}
     <h1>Store creation</h1>
 
     <form action="{{ path('store_create') }}" method="post" {{ form_enctype(form) }}>

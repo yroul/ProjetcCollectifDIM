@@ -1,1 +1,5 @@
-Hello {{ name }}!
+{% extends '::base.html.twig' %} 
+
+{% block body -%}
+{% include "HGREntityBundle:Default:menu-top.html.twig" %}
+{% endblock %}

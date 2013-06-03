@@ -1,9 +1,10 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
+     {% include "HGREntityBundle:Store:menu-top.html.twig" %}
     <h1>Store list</h1>
 
-    <table class="records_list">
+    <table class="records_list table-hover table">
         <thead>
             <tr>
                 <th>Id</th>
