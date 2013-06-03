@@ -22,7 +22,6 @@ class User extends BaseUser
      */
     protected $id;
 
-
     /**
      * Get id
      *
@@ -31,5 +30,15 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
+    }
+    
+    /**
+     * Get roles
+     *
+     * @return roles 
+     */
+    public function getRoles()
+    {
+        return $this->roles;
     }
 }
