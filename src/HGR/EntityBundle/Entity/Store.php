@@ -35,7 +35,7 @@ class Store
     
     /**
      *
-     * @ORM\ManyToMany(targetEntity="HGR\EntityBundle\Entity\StockProduct",cascade={"persist","remove"})
+     * @ORM\OneToMany(targetEntity="HGR\EntityBundle\Entity\StockProduct",mappedBy="store",cascade={"persist","remove"})
      * @ORM\JoinTable(name="StoreStock",joinColumns={@ORM\JoinColumn(name="store_id",referencedColumnName="id")})
      */
     private $stocks;

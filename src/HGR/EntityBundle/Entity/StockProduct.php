@@ -4,6 +4,7 @@ namespace HGR\EntityBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use \InvalidArgumentException;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * StockProduct
  *
@@ -28,12 +29,19 @@ class StockProduct
     private $amount;
 
    /**
+    * @Assert\NotBlank()
     *@ORM\OneToOne(targetEntity="HGR\EntityBundle\Entity\Product",cascade={"persist"})
     *@ORM\JoinColumn(name="product_id",referencedColumnName="id")
     *  
     */
     private $product;
 
+    /**
+     * @Assert\NotBlank()
+     *  @ORM\ManyToOne(targetEntity="HGR\EntityBundle\Entity\Store",inversedBy="stocks")
+     *  
+     */
+    private $store;
      
     /**
      * Set amount
@@ -64,4 +72,15 @@ class StockProduct
     public function getProduct(){
         return $this->product;
     }
+    public function getId(){
+        return $this->id;
+    }
+    public function getStore() {
+        return $this->store;
+    }
+
+    public function setStore($store) {
+        $this->store = $store;
+    }
+
 }

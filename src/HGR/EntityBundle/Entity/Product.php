@@ -30,7 +30,7 @@ class Product
         
     }
     /**
-     * @Assert\NotBlank()
+     * 
      * @ORM\ManyToOne(targetEntity="HGR\EntityBundle\Entity\Category", inversedBy="products",cascade={"persist"})
      */
     protected $category;
@@ -301,5 +301,8 @@ class Product
     public function getAttributes()
     {
         return $this->attributes;
+    }
+    public function __toString() {
+        return $this->getName();
     }
 }
