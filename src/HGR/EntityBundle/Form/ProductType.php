@@ -14,11 +14,11 @@ class ProductType extends AbstractType
             ->add('origin')
             ->add('brand')
             ->add('tags')
-            ->add('imageURL')
             ->add('attributes')
             ->add('price')
             ->add('name')
             ->add('category')
+            ->add('file')
         ;
     }
 

@@ -46,13 +46,14 @@ class ProductController extends Controller
     {
         $entity  = new Product();
         $form = $this->createForm(new ProductType(), $entity);
+       
         $form->bind($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-
+            
             return $this->redirect($this->generateUrl('product_show', array('id' => $entity->getId())));
         }
 
@@ -73,7 +74,7 @@ class ProductController extends Controller
     {
         $entity = new Product();
         $form   = $this->createForm(new ProductType(), $entity);
-
+         
         return array(
             'entity' => $entity,
             'form'   => $form->createView(),
