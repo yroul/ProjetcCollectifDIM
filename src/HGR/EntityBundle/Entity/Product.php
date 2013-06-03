@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table()
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  */
 class Product
 {
@@ -29,8 +30,14 @@ class Product
        
         
     }
+    
     /**
-     * 
+     * @Assert\File(maxSize="6000000")
+     */
+    public $file;
+    
+    /**
+     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="HGR\EntityBundle\Entity\Category", inversedBy="products",cascade={"persist"})
      */
     protected $category;
@@ -302,7 +309,78 @@ class Product
     {
         return $this->attributes;
     }
-    public function __toString() {
-        return $this->getName();
+    
+     public function getAbsolutePath()
+    {
+        return null === $this->imageURL ? null : $this->getUploadRootDir().'/'.$this->imageURL;
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->imageURL ? null : $this->getUploadDir().'/'.$this->imageURL;
+    }
+
+    protected function getUploadRootDir()
+    {
+        // le chemin absolu du répertoire où les documents uploadés doivent être sauvegardés
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        // on se débarrasse de « __DIR__ » afin de ne pas avoir de problème lorsqu'on affiche
+        // le document/image dans la vue.
+        return 'uploads/images';
+    }
+    
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        if (null !== $this->file) {
+            // faites ce que vous voulez pour générer un nom unique
+            try{
+                $ext = $this->file->guessExtension();
+            } catch (Exception $e) {
+                $expl = explode('.', $this->file->getName());
+                
+                if (is_array($expl) && count($expl) > 0)
+                    $ext  = $expl[count($expl)];
+                else
+                    $ext = 'txt';
+            }
+            $this->imageURL = sha1(uniqid(mt_rand(), true)).'.'.$ext;  
+        }
+    }
+    
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+        if (null === $this->file) {
+            return;
+        }
+
+        // s'il y a une erreur lors du déplacement du fichier, une exception
+        // va automatiquement être lancée par la méthode move(). Cela va empêcher
+        // proprement l'entité d'être persistée dans la base de données si
+        // erreur il y a
+        $this->file->move($this->getUploadRootDir(), $this->imageURL);
+
+        unset($this->file);
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        if ($file = $this->getAbsolutePath()) {
+            unlink($file);
+        }
     }
 }
