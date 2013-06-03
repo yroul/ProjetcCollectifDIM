@@ -44,20 +44,21 @@ class StockProductController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity  = new StockProduct();
-        $form = $this->createForm(new StockProductType(), $entity);
+        $stockProduct  = new StockProduct();
+        $form = $this->createForm(new StockProductType(), $stockProduct);
         $form->bind($request);
 
         if ($form->isValid()) {
+            
             $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
+            $em->persist($stockProduct);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('stockproduct_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('stockproduct_show', array('id' => $stockProduct->getId())));
         }
 
         return array(
-            'entity' => $entity,
+            'entity' => $stockProduct,
             'form'   => $form->createView(),
         );
     }

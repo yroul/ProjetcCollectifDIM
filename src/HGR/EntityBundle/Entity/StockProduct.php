@@ -23,7 +23,7 @@ class StockProduct
     private $id;
     /**
      * @var integer
-     *
+     * @Assert\Min(limit = "0", message = "La quantité doit être supérieur ou égale à 0")
      * @ORM\Column(name="amount", type="integer")
      */
     private $amount;
@@ -51,9 +51,6 @@ class StockProduct
      */
     public function setAmount($amount)
     {
-        if($amount<0){
-            throw new \InvalidArgumentException("amount cannot be < 0");
-        }
         $this->amount = $amount;
     }
 
