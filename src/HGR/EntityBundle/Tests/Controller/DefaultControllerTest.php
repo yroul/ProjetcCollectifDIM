@@ -10,7 +10,8 @@ use HGR\EntityBundle\Entity\Mark;
 class DefaultControllerTest extends WebTestCase
 {
     
-    public function testStockProductAmountUnderZero(){
+    //cause symfony's form valdiation policy, the setter setAmount don't throw exception
+   /* public function testStockProductAmountUnderZero(){
         $stockProduct = new StockProduct();
         try{
             
@@ -20,7 +21,7 @@ class DefaultControllerTest extends WebTestCase
         }
         
         $this->setExpectedException("InvalidArgumentException");
-    }
+    }*/
     public function testAddStockProductAmount(){
          $stockProduct = new StockProduct();
          $stockProduct->setAmount(15);
