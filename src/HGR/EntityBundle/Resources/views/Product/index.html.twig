@@ -2,8 +2,7 @@
 
 {% block body -%}
     {% include "HGREntityBundle:Product:menu-top.html.twig" %}
-    <h1>Product list</h1>
-
+    <legend>Product list</legend>
     <table class="records_list table-hover table">
         <thead>
             <tr>
@@ -11,7 +10,7 @@
                 <th>Origin</th>
                 <th>Brand</th>
                 <th>Tags</th>
-                <th>Imageurl</th>
+                <th>Image</th>
                 <th>Attributes</th>
                 <th>Price</th>
                 <th>Name</th>
@@ -25,7 +24,9 @@
                 <td>{{ entity.origin }}</td>
                 <td>{{ entity.brand }}</td>
                 <td>{{ entity.tags }}</td>
-                <td>{{ entity.imageURL }}</td>
+                <td>{% if entity.imageURL != '' %}
+                        <img width="64px" src="{{ entity.imageURL }}" alt="cat_img{{ entity.id}}" /></td>
+                    {% endif %} </td>
                 <td>{{ entity.attributes }}</td>
                 <td>{{ entity.price }}</td>
                 <td>{{ entity.name }}</td>
@@ -44,11 +45,9 @@
         </tbody>
     </table>
 
-        <ul>
-        <li>
-            <a href="{{ path('product_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
+    <div class="form-actions">
+        <a class="btn btn-primary" href="{{ path('product_new') }}">
+            Create a new entry
+        </a>
+    </div>
     {% endblock %}

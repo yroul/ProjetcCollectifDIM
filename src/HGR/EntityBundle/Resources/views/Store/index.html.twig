@@ -2,8 +2,7 @@
 
 {% block body -%}
      {% include "HGREntityBundle:Store:menu-top.html.twig" %}
-    <h1>Store list</h1>
-
+    <legend>Store list</legend>
     <table class="records_list table-hover table">
         <thead>
             <tr>
@@ -38,11 +37,9 @@
         </tbody>
     </table>
 
-        <ul>
-        <li>
-            <a href="{{ path('store_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
+     <div class="form-actions">
+        <a class="btn btn-primary" href="{{ path('store_new') }}">
+            Create a new entry
+        </a>
+    </div>
     {% endblock %}

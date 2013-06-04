@@ -15,8 +15,10 @@
                 <td>{{ entity.name }}</td>
             </tr>
             <tr>
-                <th>Imageurl</th>
-                <td>{{ entity.imageURL }}</td>
+                <th>Image</th>
+                <td>{% if entity.imageURL != '' %}
+                        <img width="64px" src="{{ entity.imageURL }}" alt="cat_img{{ entity.id}}" /></td>
+                    {% endif %} </td>
             </tr>
         </tbody>
     </table>
@@ -24,7 +26,7 @@
         <ul class="record_actions">
     <li>
         <a href="{{ path('category') }}">
-            Back to the list
+           Cancel
         </a>
     </li>
     <li>

@@ -23,8 +23,10 @@
                 <td>{{ entity.tags }}</td>
             </tr>
             <tr>
-                <th>Imageurl</th>
-                <td>{{ entity.imageURL }}</td>
+                <th>Image</th>
+                <td>{% if entity.imageURL != '' %}
+                        <img width="64px" src="{{ entity.imageURL }}" alt="cat_img{{ entity.id}}" /></td>
+                    {% endif %} </td>
             </tr>
             <tr>
                 <th>Attributes</th>
@@ -44,7 +46,7 @@
         <ul class="record_actions">
     <li>
         <a href="{{ path('product') }}">
-            Back to the list
+            Cancel
         </a>
     </li>
     <li>

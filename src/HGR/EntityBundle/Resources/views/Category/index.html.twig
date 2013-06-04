@@ -2,14 +2,14 @@
 
 {% block body -%}
     {% include "HGREntityBundle:Category:menu-top.html.twig" %}
-    <h1>Category list</h1>
+    <legend>Category list</legend>
 
     <table class="records_list table-hover table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>Imageurl</th>
+                <th>Image</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -18,7 +18,10 @@
             <tr>
                 <td><a href="{{ path('category_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.name }}</td>
-                <td>{{ entity.imageURL }}</td>
+                <td>
+                    {% if entity.imageURL != '' %}
+                        <img width="64px" src="{{ entity.imageURL }}" alt="cat_img{{ entity.id}}" /></td>
+                    {% endif %}                    
                 <td>
                 <ul>
                     <li>
@@ -34,11 +37,9 @@
         </tbody>
     </table>
 
-        <ul>
-        <li>
-            <a href="{{ path('category_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
+    <div class="form-actions">
+        <a class="btn btn-primary" href="{{ path('category_new') }}">
+            Create a new entry
+        </a>
+    </div>
     {% endblock %}

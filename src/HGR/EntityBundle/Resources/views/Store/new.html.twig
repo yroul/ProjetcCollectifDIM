@@ -2,20 +2,14 @@
 
 {% block body -%}
      {% include "HGREntityBundle:Store:menu-top.html.twig" %}
-    <h1>Store creation</h1>
 
     <form action="{{ path('store_create') }}" method="post" {{ form_enctype(form) }}>
-        {{ form_widget(form) }}
-        <p>
-            <button type="submit">Create</button>
-        </p>
+        <fieldset><legend>Store creation</legend>        
+            {{ form_widget(form) }}            
+            <p>
+                <button type="submit">Create</button>
+                <a class="btn" href="{{ path('store') }}">Cancel</a>
+            </p>
+        </fieldset>
     </form>
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('store') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
 {% endblock %}
