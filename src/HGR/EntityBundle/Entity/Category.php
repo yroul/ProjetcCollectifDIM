@@ -50,7 +50,7 @@ class Category
     /**
      * @Assert\File(maxSize="6000000")
      */
-    public $file;
+    protected $file;
     
     /**
      * Get id
@@ -186,4 +186,21 @@ class Category
             unlink($file);
         }
     }
+    public function getProducts() {
+        return $this->products;
+    }
+
+    public function setProducts($products) {
+        $this->products = $products;
+    }
+
+    public function getFile() {
+        return $this->file;
+    }
+
+    public function setFile($file) {
+        $this->file = $file;
+    }
+
+
 }

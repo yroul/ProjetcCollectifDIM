@@ -34,7 +34,7 @@ class Product
     /**
      * @Assert\File(maxSize="6000000")
      */
-    public $file;
+    protected $file;
     
     /**
      * @Assert\NotBlank()
@@ -386,4 +386,13 @@ class Product
     public function __toString() {
         return $this->getName();
     }
+    public function getFile() {
+        return $this->file;
+    }
+
+    public function setFile($file) {
+        $this->file = $file;
+    }
+
+
 }
