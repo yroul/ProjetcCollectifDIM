@@ -1,8 +1,12 @@
 root { 
     display: block;
 }
-
 .clr{
     clear: both;
 }
-
+table tbody li{
+    list-style: none;
+}
+table tbody i{
+    margin-right: 5px;
+}

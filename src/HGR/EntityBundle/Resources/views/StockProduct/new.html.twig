@@ -1,25 +1,21 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>StockProduct creation</h1>
-    
+    {% include "HGREntityBundle:StockProduct:menu-top.html.twig" %}    
     {% if app.session.hasFlash('error') %}
     <div class="flash-error">
         {{ app.session.flash('error') }}
     </div>
 {% endif %}
     <form action="{{ path('stockproduct_create') }}" method="post" {{ form_enctype(form) }}>
-        {{ form_widget(form) }}
+        <fieldset><legend>StockProduct creation</legend>
+            {{ form_widget(form) }}
         <p>
             <button type="submit">Create</button>
+            <a class="btn" href="{{ path('stockproduct') }}">
+            Cancel
+            </a>
         </p>
+            </fieldset>
     </form>
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('stockproduct') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
 {% endblock %}

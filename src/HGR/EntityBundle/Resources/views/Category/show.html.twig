@@ -17,7 +17,7 @@
             <tr>
                 <th>Image</th>
                 <td>{% if entity.imageURL != '' %}
-                        <img width="64px" src="{{ entity.imageURL }}" alt="cat_img{{ entity.id}}" /></td>
+                        <img width="64px" src="{{ asset(entity.getWebPath) }}" alt="cat_img{{ entity.id}}" /></td>
                     {% endif %} </td>
             </tr>
         </tbody>

@@ -1,20 +1,17 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>User creation</h1>
-
+{% include "HGRUserBundle:User:menu-top.html.twig" %}
     <form action="{{ path('user_create') }}" method="post" {{ form_enctype(form) }}>
+        <fieldset><legend>User creation</legend>
         {{ form_widget(form) }}
+              
         <p>
             <button type="submit">Create</button>
+            <a class="btn" href="{{ path('user') }}">
+            Cancel
+             </a>
         </p>
+        </fieldset>
     </form>
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('user') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
 {% endblock %}

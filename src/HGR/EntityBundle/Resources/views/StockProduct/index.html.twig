@@ -1,7 +1,8 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>StockProduct list</h1>
+{% include "HGREntityBundle:StockProduct:menu-top.html.twig" %}
+    <legend>StockProduct list</legend>
 
     <table class="records_list">
         <thead>
@@ -22,10 +23,10 @@
                 <td>
                 <ul>
                     <li>
-                        <a href="{{ path('stockproduct_show', { 'id': entity.id }) }}">show</a>
+                        <i class="icon-search"></i><a href="{{ path('stockproduct_show', { 'id': entity.id }) }}">show</a>
                     </li>
                     <li>
-                        <a href="{{ path('stockproduct_edit', { 'id': entity.id }) }}">edit</a>
+                        <i class="icon-pencil"></i><a href="{{ path('stockproduct_edit', { 'id': entity.id }) }}">edit</a>
                     </li>
                 </ul>
                 </td>
@@ -34,11 +35,9 @@
         </tbody>
     </table>
 
-        <ul>
-        <li>
-            <a href="{{ path('stockproduct_new') }}">
+        <div class="form-actions">
+            <a class="btn btn-primary" href="{{ path('stockproduct_new') }}">
                 Create a new entry
             </a>
-        </li>
-    </ul>
+        </div>
     {% endblock %}

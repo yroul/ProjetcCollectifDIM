@@ -1,7 +1,8 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>User list</h1>
+{% include "HGRUserBundle:User:menu-top.html.twig" %}
+    <legend>User list</legend>
 
     <table class="records_list">
         <thead>
@@ -23,10 +24,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('user_show', { 'id': entity.id }) }}">show</a>
+                            <i class="icon-search"></i><a href="{{ path('user_show', { 'id': entity.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('user_edit', { 'id': entity.id }) }}">edit</a>
+                            <i class="icon-pencil"></i><a href="{{ path('user_edit', { 'id': entity.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -35,11 +36,9 @@
         </tbody>
     </table>
 
-        <ul>
-        <li>
-            <a href="{{ path('user_new') }}">
+        <div class="form-actions">
+            <a class="btn btn-primary" href="{{ path('user_new') }}">
                 Create a new entry
             </a>
-        </li>
-    </ul>
+        </div>
     {% endblock %}

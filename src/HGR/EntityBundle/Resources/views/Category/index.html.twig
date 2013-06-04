@@ -20,15 +20,15 @@
                 <td>{{ entity.name }}</td>
                 <td>
                     {% if entity.imageURL != '' %}
-                        <img width="64px" src="{{ entity.imageURL }}" alt="cat_img{{ entity.id}}" /></td>
+                        <img width="64px" src="{{ asset(entity.getWebPath) }}" alt="cat_img{{ entity.id}}" /></td>
                     {% endif %}                    
                 <td>
                 <ul>
                     <li>
-                        <a href="{{ path('category_show', { 'id': entity.id }) }}">show</a>
+                        <i class="icon-search"></i><a href="{{ path('category_show', { 'id': entity.id }) }}">show</a>
                     </li>
                     <li>
-                        <a href="{{ path('category_edit', { 'id': entity.id }) }}">edit</a>
+                        <i class="icon-pencil"></i><a href="{{ path('category_edit', { 'id': entity.id }) }}">edit</a>
                     </li>
                 </ul>
                 </td>
