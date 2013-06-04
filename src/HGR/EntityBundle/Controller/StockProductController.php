@@ -221,7 +221,7 @@ class StockProductController extends Controller
      * @param type $store
      */
     private function checkExistingStock($product,$store){
-       //TODO
+       
         $storeRepo = $this->getDoctrine()->getManager()->getRepository("HGREntityBundle:Store");
         $store = $storeRepo->findOneBy(array('name'=>$store->getName()));
         //a store with this name already exist
