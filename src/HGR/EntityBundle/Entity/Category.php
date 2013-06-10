@@ -35,7 +35,7 @@ class Category
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="HGR\EntityBundle\Entity\Product", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="HGR\EntityBundle\Entity\Product", mappedBy="category",cascade={"persist","remove"})
      */
     private $products;
     
