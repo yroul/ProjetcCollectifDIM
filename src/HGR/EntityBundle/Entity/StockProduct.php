@@ -35,8 +35,8 @@ class StockProduct
 
    /**
     * @Assert\NotBlank()
-    *@ORM\OneToOne(targetEntity="HGR\EntityBundle\Entity\Product",cascade={"persist"})
-    *@ORM\JoinColumn(name="product_id",referencedColumnName="id")
+    *@ORM\OneToOne(targetEntity="HGR\EntityBundle\Entity\Product",cascade={"persist"},inversedBy="stocks")
+    *@ORM\JoinColumn(name="product_id",referencedColumnName="id",onDelete="CASCADE")
     *  
     */
     private $product;

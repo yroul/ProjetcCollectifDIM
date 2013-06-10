@@ -43,6 +43,12 @@ class Product
     protected $category;
     /**
      *
+     * @ORM\OneToMany(targetEntity="HGR\EntityBundle\Entity\StockProduct",mappedBy="store",cascade={"all"})
+     * @ORM\JoinTable(name="StoreStock",joinColumns={@ORM\JoinColumn(name="store_id",referencedColumnName="id")})
+     */
+    private $stocks;
+    /**
+     *
      * @var type 
      * @ORM\Column(name="origin", nullable=true, type="string", length=255)
      */
