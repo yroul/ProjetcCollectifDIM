@@ -11,13 +11,14 @@
             <a class="btn" href="{{ path('store') }}">
                 Cancel
             </a>
-            <form action="{{ path('store_delete', { 'id': entity.id }) }}" method="post">
+            
+        </p>
+        </fielset>
+    </form>
+<form action="{{ path('store_delete', { 'id': entity.id }) }}" method="post">
             <input type="hidden" name="_method" value="DELETE" />
             {{ form_widget(delete_form) }}
             <button type="submit">Delete</button>
         </form>
-        </p>
-        </fielset>
-    </form>
 
 {% endblock %}

@@ -13,13 +13,14 @@
             <a class="btn" href="{{ path('stockproduct') }}">
             Cancel
             </a>
-            <form action="{{ path('stockproduct_delete', { 'id': entity.id }) }}" method="post">
+            
+        </p>
+        </fieldset>
+    </form>
+<form action="{{ path('stockproduct_delete', { 'id': entity.id }) }}" method="post">
             <input type="hidden" name="_method"  value="DELETE" />
             {{ form_widget(delete_form) }}
             <button type="submit">Delete</button>
             </form>
-        </p>
-        </fieldset>
-    </form>
 
 {% endblock %}
