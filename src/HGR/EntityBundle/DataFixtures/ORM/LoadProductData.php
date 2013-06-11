@@ -63,7 +63,7 @@ class LoadProductData implements FixtureInterface
         $user->setEnabled(true);
         $user->setEmail("admin@example.com");
         //create store
-        $store1 = new Store();
+       /* $store1 = new Store();
         $store1->setName("Magasin Annecy");
         $store2 = new Store();
         $store2->setName("Magasin Lyon");
@@ -71,9 +71,9 @@ class LoadProductData implements FixtureInterface
         $stockStore1 = new StockProduct();
         //add 15 product1 to this stock
         $stockStore1->setProduct($product1);
-        $stockStore1->setAmount(15);
+        $stockStore1->setAmount(15);      
         $store1->addStocks($stockStore1);
-        $manager->persist($store1);
+        $manager->persist($store1);*/
         $manager->persist($user);
         $manager->flush();
     }    
